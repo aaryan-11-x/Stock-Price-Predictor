@@ -1,3 +1,4 @@
+# Importing The Modules
 import pandas as pd
 import numpy as np
 from sklearn.tree import DecisionTreeRegressor
@@ -10,11 +11,12 @@ plt.style.use('bmh')
 style.use('ggplot')
 
 # Enter Your File Name Here
-df = pd.read_csv('WIPRO.NS.csv')
+df = pd.read_csv('ADANIGREEN.NS.csv')
 
-x = df[['High', 'Open', 'Low', 'Volume']].values
-y = df['Close'].values
+x = df[['High', 'Open', 'Low', 'Volume']].values        # Independent Variables
+y = df['Close'].values                                  # Dependent Variables
 
+# Split The Data Set Into 80% Training & 20% Testing (For Linear Regression)
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
 
 rg = LinearRegression()
@@ -22,10 +24,9 @@ rg.fit(x_train, y_train)
 y_pred = rg.predict(x_test)
 result = pd.DataFrame({'Actual': y_test.flatten(), 'Predicted': y_pred.flatten()})
 
-# Get The Close Price
-df = df[['Close']]
-
-# Create A Variable To Predict 'X' Days Into The Future
-f_days = 25
-df['Prediction'] = df[['Close']].shift(-f_days)
-print(df.tail(4))  # Used To Get The Last 'n' Rows
+plt.figure(figsize=(16, 8))
+plt.title('Adani Greens')
+plt.xlabel('Days')
+plt.ylabel('Close Price')
+plt.plot(df['Close'])
+plt.show()
