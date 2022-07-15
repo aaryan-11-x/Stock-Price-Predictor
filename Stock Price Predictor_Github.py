@@ -11,8 +11,8 @@ plt.style.use('bmh')
 style.use('ggplot')
 
 # Enter Your File Name Here
-df = pd.read_csv('WIPRO.NS.csv')
-
+df = pd.read_csv('ADANIGREEN.NS.csv')
+stock_name = 'Adani Greens'
 x = df[['High', 'Open', 'Low', 'Volume']].values        # Independent Variables
 y = df['Close'].values                                  # Dependent Variables
 
